@@ -19,6 +19,16 @@ function counter() {
   otroContador()      // 2
   otroContador()      // 3
    */
+  let sum = 0;
+  return function () {
+       return ++sum
+    }
+  /* Otra forma de hacerlo
+  let sum = 1;
+  return function () {
+       return sum++
+    }
+  */
 }
 
 function cacheFunction(cb) {
@@ -41,6 +51,34 @@ function cacheFunction(cb) {
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
   */
+// Primera forma de resolverlo que pasa en los primeros 3 tests
+//   let cache = {};
+//   return function (arg) {
+//     cache[arg] = cb(arg) // de esta forma se hace que se genere un objeto genérico
+//     return cache[arg];
+//  }
+
+// Segunda forma de resolverlo que pasa en todos los tests pero tiene más código
+// hasOwnProperty se fija si el objecto tiene la propiedad que se pasa como parámetro y devuelve true si la tiene
+//  let cache = {};
+//  return function (arg) {
+//    if (cache.hasOwnProperty(arg)){
+//      return cache[arg];
+//    } else{
+//       cache[arg] = cb(arg)
+//       return cache[arg];
+//    }
+//  }
+
+// Tercera forma de resolverlo que esmás eficiente
+
+let cache = {}
+return function (arg) {
+  if (!cache.hasOwnProperty(arg)) {
+    cache[arg] = cb(arg);
+  }
+  return cache[arg];
+}
 }
 
 // Bind
@@ -67,8 +105,8 @@ function getNombre() {
   Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
 */
 
-let getNombreInstructor;
-let getNombreAlumno;
+let getNombreInstructor = getNombre.bind(instructor);
+let getNombreAlumno = getNombre.bind(alumno);
 
 /*
   Ejercicio 4
@@ -80,9 +118,16 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos;
-let textoGuiones;
-let textoUnderscore;
+let textoAsteriscos = crearCadena.bind(this, '*', '*')
+
+// First try
+// let textoAsteriscos = function (cadena) {
+//   this.delimitadorIzquierda == '*'
+//   this.delimitadorDerecha == '*'
+//   return 
+// };
+let textoGuiones = crearCadena.bind(this, '-', '-') ;
+let textoUnderscore = crearCadena.bind(this, '_', '_') ;
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
