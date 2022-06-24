@@ -15,23 +15,76 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 */
 
 function nFactorial(n) {
+  // definición de corte: 1! = 1, 0! = 0, <0 = 0 
+  // funcion recursiva
+  // n! = n * (n-1) * (n-2) ... * 1 * 1
+  if (n < 0) { return 0}
+  else if (n === 1 || n === 0) { return 1}
+  return nFactorial(n-1) * n
 }
 
 function nFibonacci(n) {
+  // Formula de Fib: Fib(n) = Fib(n-1) + Fib(n-2)
+  // Definición de corte: Fib(0)= 0, Fib(1)= 1
+  if (n < 0) { return 0}
+  else if (n === 0) { return 0}
+  else if (n === 1) { return 1}
+  return nFibonacci(n-1) + nFibonacci(n-2)
 }
 
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
   - enqueue: agrega un valor respetando el orden.
-  - dequeue: remueve un valor respetando el orden. Retorna undefined cuando la queue está vacía.
+  - enqueue: remueve un valor respetando el orden. Retorna undefined cuando la queue está vacía.
   - size: retorna el tamaño (cantidad de elementos) de la queue.
 
 Pueden utilizar class o función constructora.
 */
 
 function Queue() {
-
+  this.data = [];
 }
+
+Queue.prototype.enqueue = function(value) {
+  this.data.push(value);
+}
+Queue.prototype.dequeue = function(value) {
+  return this.data.shift(value);
+}
+Queue.prototype.size = function() {
+  return this.data.length;
+}
+
+// Otra forma de pensarlo #1
+// this.array = [];
+//   this.enqueue = function() {
+//     this.array.push();
+//   }
+//   this.dequeue = function() {
+//   }
+//   this.size = function() {
+//     this.array.length
+//   }
+//   return array
+
+// Otra forma de pensarlo #2
+// class Support {
+//   constructor (){
+//     this.support = []
+//   }
+//   enqueue(){
+//     this.Support.push();
+//   }
+//   enqueue(){
+//     this.Support.shift();
+//   } 
+//   size (){
+//     this.Support.length();
+//   }
+// }
+// let Queue = new Support
+
+
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
