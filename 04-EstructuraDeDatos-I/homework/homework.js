@@ -47,9 +47,14 @@ function Queue() {
 
 Queue.prototype.enqueue = function(value) {
   this.data.push(value);
+  // another way to write the .push() => this.data = [...this.data, value]
 }
 Queue.prototype.dequeue = function(value) {
   return this.data.shift(value);
+  // another way to write the shift() 
+  // const[result, ...rest] = this.data; // rest operator
+  // this.data = rest;
+  // return result;
 }
 Queue.prototype.size = function() {
   return this.data.length;
