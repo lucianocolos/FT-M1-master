@@ -52,6 +52,23 @@ function bubbleSort(array) {
    }
   }
   return array;
+  
+  /* Otra forma de resolverlo
+  var flag = true
+  while(flag){
+    flag = false;
+    for (let i=0; i < array.length; i++){
+      if(array[i]> array[i+1]){
+        var aux = arrau[i];
+        array[i] = array[i+1];
+        array[i+1] = aux;
+        flag = true
+      }
+    }
+  }
+  return array
+  */
+
 }
 
 
@@ -65,7 +82,7 @@ function insertionSort(array) {
       // Choosing the first element in our unsorted subarray
       let current = array[i];
       // The last element of our sorted subarray
-      let j = i-1; 
+      let j = i-1; // j está siempre en una osición antes que i
       while ((j > -1) && (current < array[j])) {
         array[j+1] = array[j];
           j--;
@@ -81,6 +98,13 @@ function selectionSort(array) {
   // el array recibido como parámetro utilizando dos arreglos
   // Devolver el array ordenado resultante
   // Tu código:
+  // [5, 1, 4, 2, 8]
+  // [5, 1, 4, 2, 8]
+  //  i
+  //     j
+  //    min
+  // var aux = 
+
   for(let i = 0; i < array.length; i++){
     //set min to the current iteration of i
     let min = i;
